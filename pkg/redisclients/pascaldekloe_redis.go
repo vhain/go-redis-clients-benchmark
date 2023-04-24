@@ -1,6 +1,8 @@
 package redisclients
 
 import (
+	"reflect"
+
 	pascaldekloe_redis "github.com/pascaldekloe/redis"
 )
 
@@ -9,7 +11,7 @@ type PascaldekloeRedisClient struct {
 }
 
 func (c *PascaldekloeRedisClient) Name() string {
-	return "https://github.com/pascaldekloe/redis"
+	return reflect.TypeOf(c.client).Elem().PkgPath()
 }
 
 func (c *PascaldekloeRedisClient) Get(key string) (string, error) {

@@ -1,13 +1,17 @@
 package redisclients
 
-import redigo "github.com/gomodule/redigo/redis"
+import (
+	"reflect"
+
+	redigo "github.com/gomodule/redigo/redis"
+)
 
 type RedigoClient struct {
 	conn redigo.Conn
 }
 
 func (c *RedigoClient) Name() string {
-	return "https://github.com/gomodule/redigo/redis"
+	return reflect.TypeOf(c.conn).Elem().PkgPath()
 }
 
 func (c *RedigoClient) Get(key string) (string, error) {

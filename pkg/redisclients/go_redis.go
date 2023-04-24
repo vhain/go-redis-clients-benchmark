@@ -1,7 +1,10 @@
 package redisclients
 
 import (
-	goredis "github.com/go-redis/redis/v7"
+	"context"
+	"reflect"
+
+	goredis "github.com/redis/go-redis/v9"
 )
 
 type GoRedisClient struct {
@@ -9,15 +12,15 @@ type GoRedisClient struct {
 }
 
 func (c *GoRedisClient) Name() string {
-	return "https://github.com/go-redis/redis/v7"
+	return reflect.TypeOf(c.client).Elem().PkgPath()
 }
 
 func (c *GoRedisClient) Get(key string) (string, error) {
-	return c.client.Get(key).Result()
+	return c.client.Get(context.Background(), key).Result()
 }
 
 func (c *GoRedisClient) Set(key, value string) error {
-	return c.client.Set(key, value, 0).Err()
+	return c.client.Set(context.Background(), key, value, 0).Err()
 }
 
 func (c *GoRedisClient) Teardown() {

@@ -1,6 +1,8 @@
 package redisclients
 
 import (
+	"reflect"
+
 	goresp3 "github.com/stfnmllr/go-resp3/client"
 )
 
@@ -9,7 +11,7 @@ type GoResp3Client struct {
 }
 
 func (c *GoResp3Client) Name() string {
-	return "https://github.com/stfnmllr/go-resp3/client"
+	return reflect.TypeOf(c.conn).Elem().PkgPath()
 }
 
 func (c *GoResp3Client) Get(key string) (string, error) {
