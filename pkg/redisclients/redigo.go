@@ -11,8 +11,7 @@ func (c *RedigoClient) Name() string {
 }
 
 func (c *RedigoClient) Get(key string) (string, error) {
-	val, err := c.conn.Do("GET", key)
-	return string([]byte(val.([]uint8))), err
+	return redigo.String(c.conn.Do("GET", key))
 }
 
 func (c *RedigoClient) Set(key, value string) error {

@@ -13,25 +13,23 @@ func (c *PascaldekloeRedisClient) Name() string {
 }
 
 func (c *PascaldekloeRedisClient) Get(key string) (string, error) {
-	val, err := c.client.GET(key)
-	return string(val), err
+	value, _, err := c.client.GETString(key)
+	return value, err
 }
 
 func (c *PascaldekloeRedisClient) Set(key, value string) error {
-	return c.client.SET(key, []byte(value))
+	return c.client.SETString(key, value)
 }
 
 func (c *PascaldekloeRedisClient) Teardown() {
 	c.client.Close()
 }
 
-var _ GenericRedisClient = &RadixClient{}
+var _ GenericRedisClient = &PascaldekloeRedisClient{}
 
 // NewPascaldekloeRedisClient creates PascaldekloeRedisClient
 func NewPascaldekloeRedisClient() GenericRedisClient {
-	client := pascaldekloe_redis.NewClient(":6379", 0, 0)
-
 	return &PascaldekloeRedisClient{
-		client: client,
+		client: pascaldekloe_redis.NewClient(":6379", 0, 0),
 	}
 }
