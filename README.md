@@ -1,3 +1,4 @@
 # go-redis-clients-benchmark
 
-Benchmark result can be seen [here](BENCHMARK.md).
+The benchmark tests Go clients with sequential `GET` and `SET` commands.
+See the results [here](BENCHMARK.md).
