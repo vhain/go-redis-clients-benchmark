@@ -2,6 +2,8 @@ package redisclients
 
 import (
 	"context"
+	"reflect"
+
 	goredis "github.com/redis/go-redis/v9"
 )
 
@@ -10,7 +12,7 @@ type GoRedisClient struct {
 }
 
 func (c *GoRedisClient) Name() string {
-	return "https://github.com/redis/go-redis/v9"
+	return reflect.TypeOf(c.client).Elem().PkgPath()
 }
 
 func (c *GoRedisClient) Get(key string) (string, error) {

@@ -2,6 +2,8 @@ package redisclients
 
 import (
 	"context"
+	"reflect"
+
 	radix "github.com/mediocregopher/radix/v4"
 )
 
@@ -10,7 +12,7 @@ type RadixClient struct {
 }
 
 func (c *RadixClient) Name() string {
-	return "https://github.com/mediocregopher/radix/v4"
+	return reflect.TypeOf(c.conn).Elem().PkgPath()
 }
 
 func (c *RadixClient) Get(key string) (string, error) {
