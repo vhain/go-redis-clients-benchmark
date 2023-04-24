@@ -10,6 +10,7 @@ func BenchmarkRedisClients(b *testing.B) {
 	clients := []redisclients.GenericRedisClient{
 		redisclients.NewGoRedisClient(),
 		redisclients.NewGoResp3Client(),
+		redisclients.NewPascaldekloeRedisClient(),
 		redisclients.NewRedigoClient(),
 		redisclients.NewRadixClient(),
 	}
