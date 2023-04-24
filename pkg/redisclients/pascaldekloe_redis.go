@@ -25,7 +25,7 @@ func (c *PascaldekloeRedisClient) Teardown() {
 	c.client.Close()
 }
 
-var _ GenericRedisClient = &RadixClient{}
+var _ GenericRedisClient = &PascaldekloeRedisClient{}
 
 // NewPascaldekloeRedisClient creates PascaldekloeRedisClient
 func NewPascaldekloeRedisClient() GenericRedisClient {
